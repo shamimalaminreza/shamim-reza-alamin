@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Category;
+use App\Post;
+use App\User;
+
+
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+ public function index() {
+
+        $categories=Category::all();
+        $users=User::all();
+        $posts=Post::latest()->take(6)->get();
+        return view('welcome',compact('categories','posts','users'));
+    
+
+    }
+}
